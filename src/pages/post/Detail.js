@@ -27,7 +27,6 @@ const Detail = () => {
 
   const handleDelete = () => {
     const password = window.prompt("게시물 비밀번호를 입력해주세요", "");
-    console.log(password);
     try {
       fetch(`http://localhost:9000/posts/${id}/delete/test`, {
         method: "POST", // *GET, POST, PUT, DELETE 등
@@ -36,12 +35,14 @@ const Detail = () => {
           "Content-Type": "application/json",
           Authorization: token,
         },
-        body: JSON.stringify({ password: password }), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
+        body: JSON.stringify({ password }), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
       })
         .then((res) => res.json())
         .then((data) => {
           alert(data?.message);
-          window.location.replace("/");
+          if (data?.result) {
+            window.location.replace("/");
+          }
         });
     } catch (error) {
       console.log(error);

@@ -30,6 +30,7 @@ export const currentUserInfoQuery = selector({
   key: "CurrentUserInfoQuery",
   get: async () => {
     if (token) {
+      console.log("token이 존재한다면 이 함수를 무조건 실행할거임");
       try {
         const response = await fetch(
           "http://localhost:9000/user/profile/test",

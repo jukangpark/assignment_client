@@ -39,7 +39,6 @@ const Update = () => {
       .then((res) => res.json())
       .then((data) => {
         alert(data?.message);
-        window.location.replace("/");
       });
   };
 

@@ -1,11 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
-import { useRecoilState } from "recoil";
-import { globalLoggedInState } from "../../atom";
 
 const LogIn = () => {
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(globalLoggedInState);
-  const navigate = useNavigate();
   const [user, setUser] = useState({ id: "", password: "", password2: "" });
 
   const handleId = (e) => {
@@ -39,8 +34,8 @@ const LogIn = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data?.result) {
+          console.log(data.token);
           localStorage.setItem("token", JSON.stringify(data?.token));
-          setIsLoggedIn(true);
           window.location.replace("/");
         }
         alert(data.message);
