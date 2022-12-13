@@ -1,16 +1,16 @@
-import { useEffect } from "react";
 import { Outlet } from "react-router";
 import { useRecoilValue } from "recoil";
-import { globalLoggedInState } from "../atom";
+import { currentUserInfoQuery } from "../atom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 const LayOut = () => {
-  const isLoggedIn = useRecoilValue(globalLoggedInState);
-  //   useEffect(() => {}, []);
+  const data = useRecoilValue(currentUserInfoQuery);
+  console.log(data); // data가 없으면 false 줄거임
+
   return (
     <div>
-      <Header isLoggedIn={isLoggedIn} />
+      <Header isLoggedIn={data?.result} id={data?.user?.id} />
       <Outlet />
       <Footer />
     </div>

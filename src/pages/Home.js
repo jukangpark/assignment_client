@@ -1,22 +1,40 @@
-import { useEffect } from "react";
-import { useRecoilValue } from "recoil";
-import { globalLoggedInState } from "../atom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  const isLoggedIn = useRecoilValue(globalLoggedInState);
+  const [posts, setPosts] = useState([]);
+
   useEffect(() => {
-    fetch("http://localhost:9000/test")
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-
-    fetch("http://localhost:9000/posts/minsu")
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    try {
+      fetch("http://localhost:9000/posts/test")
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setPosts(data);
+        });
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
-
   return (
     <div>
       <h1>Home 페이지</h1>
+      {posts.map((post, index) => (
+        <Link
+          to={`/posts/${post._id}`}
+          key={index}
+          style={{ border: "1px solid gray", margin: "10px", display: "block" }}
+        >
+          <h1>{post?.title}</h1>
+          <p>{post?.content}</p>
+          <p> author: {post?.author?.id}</p>
+          <p> createdAt: {post?.createdAt}</p>
+        </Link>
+      ))}
+
+      {/* <Child>
+        <div>1</div>
+      </Child> */}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useRecoilState } from "recoil";
-import { globalLoggedInState } from "../atom";
+import { globalLoggedInState } from "../../atom";
 
 const LogIn = () => {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(globalLoggedInState);
@@ -33,18 +33,17 @@ const LogIn = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      // credentials: "include",
 
       body: JSON.stringify(user), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
     })
       .then((res) => res.json())
       .then((data) => {
-        localStorage.setItem("token", JSON.stringify(data?.token));
         if (data?.result) {
-          alert("로그인 완료");
+          localStorage.setItem("token", JSON.stringify(data?.token));
           setIsLoggedIn(true);
-          navigate("/");
+          window.location.replace("/");
         }
+        alert(data.message);
       });
   };
 

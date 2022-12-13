@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const Upload = () => {
+  const token = JSON.parse(window.localStorage.getItem("token"));
   const [post, setPost] = useState({ title: "", content: "", password: "" });
 
   const handleTitle = (e) => {
@@ -27,9 +28,13 @@ const Upload = () => {
       method: "POST", // *GET, POST, PUT, DELETE 등
       headers: {
         "Content-Type": "application/json",
+        Authorization: token,
       },
       body: JSON.stringify(post), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => alert(data?.message));
+    window.location.replace("/");
   };
 
   return (

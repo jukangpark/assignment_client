@@ -15,7 +15,13 @@ const StyledHeader = styled.header`
   }
 `;
 
-const Header = ({ isLoggedIn }) => {
+const handleLogOut = () => {
+  localStorage.removeItem("token");
+  window.location.replace("/");
+};
+
+const Header = ({ isLoggedIn, id }) => {
+  console.log(id);
   return (
     <StyledHeader>
       <ul>
@@ -28,7 +34,10 @@ const Header = ({ isLoggedIn }) => {
             <li>
               <Link to="/upload">Upload</Link>
             </li>
-            <li>Profile</li>
+            <li>
+              <Link to="/user/profile">{id} 님의 Profile</Link>
+            </li>
+            <li onClick={handleLogOut}>LogOut</li>
           </>
         ) : (
           <>
