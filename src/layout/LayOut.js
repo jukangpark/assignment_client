@@ -6,7 +6,7 @@ import Header from "../components/Header";
 
 const LayOut = () => {
   const data = useRecoilValue(currentUserInfoQuery);
-  console.log(data); // data가 없으면 false 줄거임
+  // console.log(data); // data가 없으면 false 줄거임
 
   return (
     <div>

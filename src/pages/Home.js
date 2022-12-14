@@ -5,31 +5,35 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    const func = async () => {
+      const response = await fetch("http://localhost:9000/posts/test");
+      const data = await response.json();
+      console.log(data);
+      setPosts(data);
+    };
     try {
-      fetch("http://localhost:9000/posts/test")
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          setPosts(data);
-        });
-    } catch (err) {
-      console.log(err);
+      func();
+    } catch (error) {
+      console.log(error);
     }
   }, []);
   return (
     <div>
       <h1>Home 페이지</h1>
       {posts.map((post, index) => (
-        <Link
-          to={`/posts/${post._id}`}
+        <div
           key={index}
           style={{ border: "1px solid gray", margin: "10px", display: "block" }}
         >
-          <h1>{post?.title}</h1>
-          <p>{post?.content}</p>
-          <p> author: {post?.author?.id}</p>
-          <p> createdAt: {post?.createdAt}</p>
-        </Link>
+          <Link to={`/posts/${post._id}`}>
+            <h1> 제목 : {post?.title}</h1>
+            <p> 내용 : {post?.content}</p>
+            <p> 작성일 : {post?.createdAt}</p>
+          </Link>
+          <Link to={`/user/${post?.author}`}>
+            <p> author: {post?.author}</p>
+          </Link>
+        </div>
       ))}
 
       {/* <Child>

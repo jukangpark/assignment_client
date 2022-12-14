@@ -23,7 +23,7 @@ const Router = () => {
           {isLoggedIn ? (
             <>
               <Route path={"/upload"} element={<Upload />} />
-              <Route path={"/user/profile"} element={<Profile />} />
+              <Route path={"/user/:id"} element={<Profile />} />
               <Route path={"/posts/:id/update"} element={<UpdatePost />} />
             </>
           ) : (

@@ -21,7 +21,7 @@ const handleLogOut = () => {
 };
 
 const Header = ({ isLoggedIn, id }) => {
-  console.log(id);
+  // console.log(id);
   return (
     <StyledHeader>
       <ul>
@@ -35,7 +35,7 @@ const Header = ({ isLoggedIn, id }) => {
               <Link to="/upload">Upload</Link>
             </li>
             <li>
-              <Link to="/user/profile">{id} 님의 Profile</Link>
+              <Link to={`/user/${id}`}>{id} 님의 Profile</Link>
             </li>
             <li onClick={handleLogOut}>LogOut</li>
           </>

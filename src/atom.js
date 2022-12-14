@@ -8,7 +8,7 @@ let tokenData;
 if (token) {
   tokenData = JSON.parse(token);
 }
-console.log(tokenData);
+// console.log("내가 서버로 부터 받은 토큰 데이터", tokenData);
 
 // token 값이 존재한다고 한다면?
 // 해당 토큰 값을 가지고 user 의 Profile 정보를 가지고 올 수 있는 api 호출하기
@@ -30,10 +30,12 @@ export const currentUserInfoQuery = selector({
   key: "CurrentUserInfoQuery",
   get: async () => {
     if (token) {
-      console.log("token이 존재한다면 이 함수를 무조건 실행할거임");
+      // console.log(
+      //   "로컬 스토리지에 token이 존재한다면 이 함수(서버에 인증 절차)를 무조건 실행할거임"
+      // );
       try {
         const response = await fetch(
-          "http://localhost:9000/user/profile/test",
+          "http://localhost:9000/user/myProfile/test",
           {
             headers: {
               Authorization: tokenData,

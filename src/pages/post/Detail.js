@@ -51,9 +51,11 @@ const Detail = () => {
   return (
     <>
       <div style={{ height: "300px" }}>
-        <h1>디테일 페이지</h1>
-        <p>{post?.title}</p>
-        <p>{post?.content}</p>
+        {/* <h1>디테일 페이지</h1> */}
+        <h1>제목 : {post?.title}</h1>
+        <button>좋아요</button>
+        <p>작성자 : {post?.author}</p>
+        <p>내용 : {post?.content}</p>
       </div>
       <div>
         {data.result ? (
