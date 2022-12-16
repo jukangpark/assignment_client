@@ -23,7 +23,7 @@ const LogIn = () => {
     console.log(user);
     setUser({ id: "", password: "", password2: "" });
 
-    fetch("http://localhost:9000/user/login/test", {
+    fetch(`${process.env.REACT_APP_BASE_URL}/user/login/test`, {
       method: "POST", // *GET, POST, PUT, DELETE 등
       headers: {
         "Content-Type": "application/json",

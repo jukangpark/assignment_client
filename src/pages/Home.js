@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+// npm i react-dotenv
+
 const Home = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    console.log(process.env);
     const func = async () => {
-      const response = await fetch("http://localhost:9000/posts/test");
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/posts/test`
+      );
       const data = await response.json();
       console.log(data);
       setPosts(data);

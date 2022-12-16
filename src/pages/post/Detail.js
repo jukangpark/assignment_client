@@ -28,7 +28,7 @@ const Detail = () => {
   const handleDelete = () => {
     const password = window.prompt("게시물 비밀번호를 입력해주세요", "");
     try {
-      fetch(`http://localhost:9000/posts/${id}/delete/test`, {
+      fetch(`${process.env.REACT_APP_BASE_URL}/posts/${id}/delete/test`, {
         method: "POST", // *GET, POST, PUT, DELETE 등
         // delete 메서드는 body 를 받지 않는다.
         headers: {

@@ -10,14 +10,14 @@ const Profile = () => {
   const [user, setUser] = useState({ isLoading: true });
 
   useEffect(() => {
-    fetch(`http://localhost:9000/user/${id}/test`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}/user/${id}/test`, {
       headers: {
         Authorization: token,
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         setUser({ ...data, isLoading: false });
       });
   }, [id]);
@@ -26,7 +26,14 @@ const Profile = () => {
   // 2. 현재 로그인된 페이지가 아닌, 다른 사람들의 프로필 둘다 볼 수 있게끔?
 
   const handleFollow = () => {
-    alert("팔로우 완료");
+    fetch(`${process.env.REACT_APP_BASE_URL}/user/${id}/follow/test`, {
+      method: "POST",
+      headers: {
+        Authorization: token,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => alert(data?.message));
   };
 
   return (

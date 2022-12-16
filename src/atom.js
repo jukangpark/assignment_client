@@ -35,7 +35,7 @@ export const currentUserInfoQuery = selector({
       // );
       try {
         const response = await fetch(
-          "http://localhost:9000/user/myProfile/test",
+          `${process.env.REACT_APP_BASE_URL}/user/myProfile/test`,
           {
             headers: {
               Authorization: tokenData,
