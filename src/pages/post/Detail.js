@@ -13,7 +13,7 @@ const Detail = () => {
   //   console.log(id);
   useEffect(() => {
     try {
-      fetch(`http://localhost:9000/posts/${id}/test`)
+      fetch(`${process.env.REACT_APP_BASE_URL}/posts/${id}/test`)
         .then((res) => res.json())
         .then((data) => setPost(data));
     } catch (error) {
