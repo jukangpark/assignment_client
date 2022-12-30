@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { currentUserInfoQuery } from "./atom";
+import { currentUserInfoQuery } from "./atom/atom";
 import LayOut from "./layout/LayOut";
 import Detail from "./pages/post/Detail";
 import Home from "./pages/Home";

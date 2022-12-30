@@ -1,8 +1,8 @@
 import { Outlet } from "react-router";
 import { useRecoilValue } from "recoil";
-import { currentUserInfoQuery } from "../atom";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import { currentUserInfoQuery } from "atom/atom";
+import Footer from "components/Footer";
+import Header from "components/Header";
 
 const LayOut = () => {
   const data = useRecoilValue(currentUserInfoQuery);

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useRecoilValue } from "recoil";
-import { currentUserInfoQuery } from "../../atom";
+import { currentUserInfoQuery } from "../../atom/atom";
 
 const Detail = () => {
   const token = JSON.parse(window.localStorage.getItem("token"));

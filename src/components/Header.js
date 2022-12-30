@@ -49,6 +49,9 @@ const Header = ({ isLoggedIn, id }) => {
             </li>
           </>
         )}
+        <li>
+          <button>dark mode</button>
+        </li>
       </ul>
     </StyledHeader>
   );
