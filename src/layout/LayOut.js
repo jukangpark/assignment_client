@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import { useRecoilValue } from "recoil";
-import { currentUserInfoQuery } from "atom/atom";
+import { currentUserInfoQuery } from "atom/auth";
 import Footer from "components/Footer";
 import Header from "components/Header";
 
