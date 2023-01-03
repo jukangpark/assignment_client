@@ -1,6 +1,6 @@
-const dark = {
+const light = {
   backgroundColor: "white",
   color: "black",
 };
 
-export default dark;
+export default light;
