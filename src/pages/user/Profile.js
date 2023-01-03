@@ -10,11 +10,7 @@ const Profile = () => {
   const [user, setUser] = useState({ isLoading: true });
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BASE_URL}/user/${id}/test`, {
-      headers: {
-        Authorization: token,
-      },
-    })
+    fetch(`${process.env.REACT_APP_BASE_URL}/user/${id}/test`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

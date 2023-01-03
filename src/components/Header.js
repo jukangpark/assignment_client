@@ -1,4 +1,6 @@
+import { isDark } from "atom/theme";
 import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
@@ -21,7 +23,12 @@ const handleLogOut = () => {
 };
 
 const Header = ({ isLoggedIn, id }) => {
-  // console.log(id);
+  const [isDarkState, setIsDarkState] = useRecoilState(isDark);
+
+  const handleTheme = () => {
+    setIsDarkState(!isDarkState);
+  };
+
   return (
     <StyledHeader>
       <ul>
@@ -50,7 +57,9 @@ const Header = ({ isLoggedIn, id }) => {
           </>
         )}
         <li>
-          <button>dark mode</button>
+          <button onClick={handleTheme} style={{ cursor: "pointer" }}>
+            {isDarkState ? "light mode" : "dark mode"}
+          </button>
         </li>
       </ul>
     </StyledHeader>

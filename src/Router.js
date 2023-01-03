@@ -23,12 +23,12 @@ const Router = () => {
           {isLoggedIn ? (
             <>
               <Route path={"/upload"} element={<Upload />} />
-              <Route path={"/user/:id"} element={<Profile />} />
               <Route path={"/posts/:id/update"} element={<UpdatePost />} />
             </>
           ) : (
             <>
               <Route path={"/user/join"} element={<Join />} />
+              <Route path={"/user/:id"} element={<Profile />} />
               <Route path={"/user/login"} element={<LogIn />} />
             </>
           )}
