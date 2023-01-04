@@ -1,3 +1,10 @@
+import { faMonero } from "@fortawesome/free-brands-svg-icons";
+import { faMoon, faSun } from "@fortawesome/free-regular-svg-icons";
+import {
+  faMosquitoNet,
+  faSunPlantWilt,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { isDark } from "atom/theme";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -69,10 +76,8 @@ const Header = ({ isLoggedIn, id }) => {
             </li>
           </>
         )}
-        <li>
-          <button onClick={handleTheme} style={{ cursor: "pointer" }}>
-            {isDarkState ? "light mode" : "dark mode"}
-          </button>
+        <li onClick={handleTheme} style={{ cursor: "pointer" }}>
+          <FontAwesomeIcon icon={isDarkState ? faSun : faMoon} />
         </li>
       </ul>
     </StyledHeader>
