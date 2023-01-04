@@ -89,7 +89,7 @@ const Join = () => {
     setValue("id", "");
     setValue("password", "");
     setValue("password2", "");
-    console.log(id, password, password2);
+
     fetch(`${process.env.REACT_APP_BASE_URL}/user/join/test`, {
       method: "POST", // *GET, POST, PUT, DELETE 등
       headers: {

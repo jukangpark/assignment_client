@@ -30,8 +30,6 @@ const Home = () => {
     queryFn: getPosts,
   });
 
-  console.log(posts);
-
   // useEffect(() => {
   //   const func = async () => {
   //     const response = await fetch(

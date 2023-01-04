@@ -10,11 +10,9 @@ import NotFound404 from "./pages/NotFound404";
 import Profile from "./pages/user/Profile";
 import UpdatePost from "./pages/post/UpdatePost";
 import Upload from "./pages/post/Upload";
-import { Suspense } from "react";
 
 const Router = () => {
   const { result: isLoggedIn } = useRecoilValue(currentUserInfoQuery);
-  console.log(isLoggedIn);
 
   return (
     <BrowserRouter>

@@ -9,22 +9,18 @@ const LogIn = () => {
 
   const handleId = (e) => {
     setUser({ ...user, id: e.target.value });
-    console.log(e.target.value);
   };
 
   const handlePassword = (e) => {
     setUser({ ...user, password: e.target.value });
-    console.log(e.target.value);
   };
 
   const handlePassword2 = (e) => {
     setUser({ ...user, password2: e.target.value });
-    console.log(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
     setUser({ id: "", password: "", password2: "" });
 
     fetch(`${process.env.REACT_APP_BASE_URL}/user/login/test`, {
@@ -38,7 +34,6 @@ const LogIn = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data?.result) {
-          console.log(data.token);
           localStorage.setItem("token", JSON.stringify(data?.token));
           window.location.replace("/");
         }

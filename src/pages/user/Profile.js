@@ -1,9 +1,28 @@
+import { faUser } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import StyledTitle from "components/styled/form/StyledTitle";
 import StyledPost from "components/styled/post/StyledPost";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
 const token = JSON.parse(window.localStorage.getItem("token"));
+
+// 이미지 파일을 인자로 받아서 url 로 뱉는 함수(?)
+const getProfile = (file) => {
+  return new Promise((resolve) => {
+    let baseUrl = "";
+
+    let reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      baseUrl = reader.result;
+      resolve(baseUrl);
+    };
+  });
+};
 
 const Profile = () => {
   const { id } = useParams();
@@ -14,13 +33,9 @@ const Profile = () => {
     fetch(`${process.env.REACT_APP_BASE_URL}/user/${id}/test`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setUser({ ...data, isLoading: false });
       });
   }, [id]);
-
-  // 1. 이 페이지를 통해 현재 로그인 된 유저의 프로필
-  // 2. 현재 로그인된 페이지가 아닌, 다른 사람들의 프로필 둘다 볼 수 있게끔?
 
   const handleFollow = () => {
     fetch(`${process.env.REACT_APP_BASE_URL}/user/${id}/follow/test`, {
@@ -33,7 +48,15 @@ const Profile = () => {
       .then((data) => alert(data?.message));
   };
 
-  console.log(user.posts);
+  const inputRef = useRef(null);
+
+  const profileImageUpload = (e) => {
+    e.preventDefault();
+  };
+
+  const handleImageChange = (e) => {
+    console.log(e.target.files[0]);
+  };
 
   return (
     <div>
@@ -41,10 +64,19 @@ const Profile = () => {
         <div>Loading...</div>
       ) : (
         <>
-          <h1>{user.id} 님의 프로필 페이지</h1>
-          <div>프로필 이미지 영역</div>
+          <StyledTitle>{user.id} 님의 프로필 페이지</StyledTitle>
+          <form>
+            <FontAwesomeIcon icon={faUser} size="2x" />
+            <input
+              type="file"
+              accept="image/*"
+              ref={inputRef}
+              onChange={handleImageChange}
+            />
+            <button onClick={profileImageUpload}>프로필 사진 업로드</button>
+          </form>
           <button onClick={handleFollow}>팔로우하기</button>
-          {/* <button>팔로우하기</button> */}
+
           <div style={{ display: "flex", justifyContent: "space-around" }}>
             <h3>팔로잉 : {user.following}</h3>
             <h3>팔로워 : {user.follower}</h3>

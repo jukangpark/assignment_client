@@ -1,5 +1,5 @@
 import { faMonero } from "@fortawesome/free-brands-svg-icons";
-import { faMoon, faSun } from "@fortawesome/free-regular-svg-icons";
+import { faMoon, faSun, faUser } from "@fortawesome/free-regular-svg-icons";
 import {
   faMosquitoNet,
   faSunPlantWilt,
@@ -62,7 +62,9 @@ const Header = ({ isLoggedIn, id }) => {
               <Link to="/upload">Upload</Link>
             </li>
             <li>
-              <Link to={`/user/${id}`}>{id} 님의 Profile</Link>
+              <Link to={`/user/${id}`}>
+                <FontAwesomeIcon icon={faUser} />
+              </Link>
             </li>
             <li onClick={handleLogOut}>LogOut</li>
           </>

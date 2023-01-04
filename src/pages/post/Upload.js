@@ -10,22 +10,18 @@ const Upload = () => {
 
   const handleTitle = (e) => {
     setPost({ ...post, title: e.target.value });
-    console.log(e.target.value);
   };
 
   const handleContent = (e) => {
     setPost({ ...post, content: e.target.value });
-    console.log(e.target.value);
   };
 
   const handlePassword = (e) => {
     setPost({ ...post, password: e.target.value });
-    console.log(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(post);
     setPost({ title: "", content: "", password: "" });
 
     fetch(`${process.env.REACT_APP_BASE_URL}/posts/test`, {

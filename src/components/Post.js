@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import StyledPost from "./styled/post/StyledPost";
 
 const Post = ({ post }) => {
-  console.log(post);
   return (
     <StyledPost>
       <Link to={`/posts/${post._id}`}>

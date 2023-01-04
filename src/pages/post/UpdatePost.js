@@ -1,12 +1,13 @@
 import StyledButton from "components/styled/form/StyledButton";
 import StyledForm from "components/styled/form/StyledForm";
 import StyledInput from "components/styled/form/StyledInput";
+import StyledTitle from "components/styled/form/StyledTitle";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 const Update = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
-  console.log(id);
   const token = JSON.parse(window.localStorage.getItem("token"));
   const [post, setPost] = useState({ title: "", content: "" });
 
@@ -18,20 +19,17 @@ const Update = () => {
 
   const handleTitle = (e) => {
     setPost({ ...post, title: e.target.value });
-    console.log(e.target.value);
   };
 
   const handleContent = (e) => {
     setPost({ ...post, content: e.target.value });
-    console.log(e.target.value);
   };
 
   const handleSubmit = (e) => {
     const password = window.prompt("password", "");
     e.preventDefault();
-    // console.log(post);
 
-    fetch(`http://localhost:9000/posts/${id}/test`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}/posts/${id}/test`, {
       method: "PUT", // *GET, POST, PUT, DELETE 등
       headers: {
         "Content-Type": "application/json",
@@ -42,19 +40,23 @@ const Update = () => {
       .then((res) => res.json())
       .then((data) => {
         alert(data?.message);
+        navigate("/");
       });
   };
 
   return (
     <div>
-      <h1>Update 페이지</h1>
+      <StyledTitle>Update 페이지</StyledTitle>
       <StyledForm>
+        <h1>Title</h1>
         <StyledInput
           placeholder="title"
           value={post.title}
           onChange={handleTitle}
         />
-        <StyledInput
+        <h1>Content</h1>
+        <textarea
+          style={{ display: "block", width: "99%", height: "400px" }}
           placeholder="content"
           value={post.content}
           onChange={handleContent}
