@@ -1,6 +1,8 @@
 import { atom } from "recoil";
 
+const isDarkJson = JSON.parse(localStorage.getItem("isDark"));
+
 export const isDark = atom({
   key: "isDark",
-  default: false,
+  default: isDarkJson ? true : false,
 });

@@ -26,6 +26,11 @@ const Header = ({ isLoggedIn, id }) => {
   const [isDarkState, setIsDarkState] = useRecoilState(isDark);
 
   const handleTheme = () => {
+    const isDarkJson = JSON.parse(localStorage.getItem("isDark"));
+    if (isDarkJson === null) {
+      localStorage.setItem("isDark", JSON.stringify(true));
+    }
+    localStorage.setItem("isDark", !isDarkJson);
     setIsDarkState(!isDarkState);
   };
 

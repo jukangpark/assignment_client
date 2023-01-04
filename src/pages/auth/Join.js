@@ -67,6 +67,10 @@ import { useNavigate } from "react-router";
 // export default Join;
 
 import { useForm } from "react-hook-form";
+import StyledInput from "components/styled/StyledInput";
+import StyledForm from "components/styled/StyledForm";
+import StyledButton from "components/styled/StyledButton";
+import Title from "components/styled/StyledTitle";
 
 const Join = () => {
   const navigate = useNavigate();
@@ -102,9 +106,10 @@ const Join = () => {
 
   return (
     <div>
-      <h1>Join 페이지</h1>
-      <form onSubmit={handleSubmit(onValid)}>
-        <input
+      <Title>Join 페이지</Title>
+      <StyledForm onSubmit={handleSubmit(onValid)}>
+        <StyledInput
+          placeholder="id"
           {...register("id", {
             required: "id를 입력해주세요",
             maxLength: 20,
@@ -117,18 +122,20 @@ const Join = () => {
           type="id"
         />
         <span>{errors?.id?.message}</span>
-        <input
+        <StyledInput
+          placeholder="password"
           {...register("password", { required: "비밀번호를 입력해주세요" })}
           type="password"
         />
         <span>{errors?.password?.message}</span>
-        <input
+        <StyledInput
+          placeholder="password2"
           {...register("password2", { required: "비밀번호를 입력해주세요" })}
           type="password"
         />
         <span>{errors?.password2?.message}</span>
-        <button onClick={handleSubmit(onValid)}>회원가입</button>
-      </form>
+        <StyledButton onClick={handleSubmit(onValid)}>회원가입</StyledButton>
+      </StyledForm>
     </div>
   );
 };
