@@ -1,3 +1,4 @@
+import StyledPost from "components/styled/post/StyledPost";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
@@ -32,6 +33,8 @@ const Profile = () => {
       .then((data) => alert(data?.message));
   };
 
+  console.log(user.posts);
+
   return (
     <div>
       {user.isLoading ? (
@@ -51,15 +54,13 @@ const Profile = () => {
           <ul>
             <h3>게시글 목록</h3>
             {user.posts.map((post, index) => (
-              <div key={index} style={{ lineHeight: "250px" }}>
-                <Link
-                  to={`/posts/${post._id}`}
-                  key={index}
-                  style={{ display: "block" }}
-                >
-                  {post.title}
-                </Link>
-              </div>
+              <StyledPost key={index}>
+                <li>
+                  <Link to={`/posts/${post._id}`}>
+                    <h1>{post.title}</h1>
+                  </Link>
+                </li>
+              </StyledPost>
             ))}
           </ul>
         </>

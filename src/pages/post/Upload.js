@@ -1,3 +1,7 @@
+import StyledButton from "components/styled/form/StyledButton";
+import StyledForm from "components/styled/form/StyledForm";
+import StyledInput from "components/styled/form/StyledInput";
+import StyledTitle from "components/styled/form/StyledTitle";
 import { useState } from "react";
 
 const Upload = () => {
@@ -41,21 +45,25 @@ const Upload = () => {
 
   return (
     <div>
-      <h1>Upload 페이지</h1>
-      <form>
-        <input placeholder="title" value={post.title} onChange={handleTitle} />
-        <input
+      <StyledTitle>Upload 페이지</StyledTitle>
+      <StyledForm>
+        <StyledInput
+          placeholder="title"
+          value={post.title}
+          onChange={handleTitle}
+        />
+        <StyledInput
           placeholder="content"
           value={post.content}
           onChange={handleContent}
         />
-        <input
+        <StyledInput
           placeholder="password"
           value={post.password}
           onChange={handlePassword}
         />
-        <button onClick={handleSubmit}>업로드</button>
-      </form>
+        <StyledButton onClick={handleSubmit}>업로드</StyledButton>
+      </StyledForm>
     </div>
   );
 };

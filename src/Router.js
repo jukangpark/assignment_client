@@ -10,9 +10,11 @@ import NotFound404 from "./pages/NotFound404";
 import Profile from "./pages/user/Profile";
 import UpdatePost from "./pages/post/UpdatePost";
 import Upload from "./pages/post/Upload";
+import { Suspense } from "react";
 
 const Router = () => {
   const { result: isLoggedIn } = useRecoilValue(currentUserInfoQuery);
+  console.log(isLoggedIn);
 
   return (
     <BrowserRouter>
@@ -20,6 +22,7 @@ const Router = () => {
         <Route element={<LayOut />}>
           <Route path={"/"} element={<Home />} />
           <Route path={"/posts/:id"} element={<Detail />} />
+          <Route path={"/user/:id"} element={<Profile />} />
           {isLoggedIn ? (
             <>
               <Route path={"/upload"} element={<Upload />} />
@@ -28,10 +31,10 @@ const Router = () => {
           ) : (
             <>
               <Route path={"/user/join"} element={<Join />} />
-              <Route path={"/user/:id"} element={<Profile />} />
               <Route path={"/user/login"} element={<LogIn />} />
             </>
           )}
+
           <Route path="/*" element={<NotFound404 />} />
         </Route>
       </Routes>

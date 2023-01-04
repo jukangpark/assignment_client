@@ -15,6 +15,14 @@ const StyledHeader = styled.header`
     cursor: pointer;
     line-height: 50px;
   }
+
+  ul > li > a {
+    text-decoration: none;
+  }
+
+  ul > li:hover {
+    text-decoration: underline;
+  }
 `;
 
 const handleLogOut = () => {

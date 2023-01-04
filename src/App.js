@@ -7,6 +7,7 @@ import dark from "./theme/dark";
 import light from "./theme/light";
 import { useRecoilValue } from "recoil";
 import { isDark } from "atom/theme";
+import { Suspense } from "react";
 
 const queryClient = new QueryClient();
 
@@ -15,8 +16,10 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={isDarkState ? dark : light}>
-        <Router />
-        <ReactQueryDevtools initialIsOpen={true} />;
+        <Suspense fallback={<div>Loading....</div>}>
+          <Router />
+        </Suspense>
+        <ReactQueryDevtools initialIsOpen={true} size="10x" />
         <GlobalStyle />
       </ThemeProvider>
     </QueryClientProvider>
@@ -24,3 +27,7 @@ const App = () => {
 };
 
 export default App;
+
+// App 전체에서 리엑트 쿼리를 사용하기 위해서는
+// QueryClientProvider 를 최상단에서 감싸주고
+// queryClient 를 props 로 넘겨줘야 합니다.

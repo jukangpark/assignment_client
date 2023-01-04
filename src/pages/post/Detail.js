@@ -1,16 +1,24 @@
+import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import StyledTitle from "components/styled/form/StyledTitle";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { useRecoilValue } from "recoil";
-import { currentUserInfoQuery } from "../../atom/auth";
+
+/*
+  요즘은 i 태그 대신에 SVG 기반인 <svg/> 태그를 사용한 아이콘이 기능이나 성능적인 측면에서 유리한 점이 많다.
+  npm i @fortawesome/fontawesome-svg-core
+  npm i @fortawesome/free-solid-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-brands-svg-icons
+  Font Awesome 을 React 컴포넌트 형태로 사용할 수 있도록 해주는 거
+  npm i @fortawesome/react-fontawesome
+*/
 
 const Detail = () => {
   const token = JSON.parse(window.localStorage.getItem("token"));
-  const data = useRecoilValue(currentUserInfoQuery);
 
   const navigate = useNavigate();
   const [post, setPost] = useState({});
   const { id } = useParams();
-  //   console.log(id);
+
   useEffect(() => {
     try {
       fetch(`${process.env.REACT_APP_BASE_URL}/posts/${id}/test`)
@@ -49,23 +57,24 @@ const Detail = () => {
     }
   };
   return (
-    <>
-      <div style={{ height: "300px" }}>
-        {/* <h1>디테일 페이지</h1> */}
-        <h1>제목 : {post?.title}</h1>
-        <button>좋아요</button>
-        <p>작성자 : {post?.author}</p>
-        <p>내용 : {post?.content}</p>
-      </div>
+    <div>
+      <StyledTitle>{post?.title}</StyledTitle>
+      <p>작성자 : {post?.author}</p>
+      <p>내용 : {post?.content}</p>
+      <p>날짜 : {post?.createdAt}</p>
       <div>
-        {data.result ? (
-          <>
-            <button onClick={handleUpdate}>update</button>
-            <button onClick={handleDelete}>delete</button>
-          </>
-        ) : null}
+        <button onClick={handleUpdate}>update</button>
+        <button onClick={handleDelete}>delete</button>
+        <button>
+          Like
+          <FontAwesomeIcon
+            icon={faThumbsUp}
+            size="1x"
+            style={{ cursor: "pointer" }}
+          />
+        </button>
       </div>
-    </>
+    </div>
   );
 };
 

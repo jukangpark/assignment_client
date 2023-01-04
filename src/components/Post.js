@@ -1,17 +1,8 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
-
-const StyledPost = styled.div`
-  border: 1px solid gray;
-  margin: 10px;
-  display: block;
-
-  a > h1 {
-    font-size: 24px;
-  }
-`;
+import StyledPost from "./styled/post/StyledPost";
 
 const Post = ({ post }) => {
+  console.log(post);
   return (
     <StyledPost>
       <Link to={`/posts/${post._id}`}>

@@ -67,10 +67,10 @@ import { useNavigate } from "react-router";
 // export default Join;
 
 import { useForm } from "react-hook-form";
-import StyledInput from "components/styled/StyledInput";
-import StyledForm from "components/styled/StyledForm";
-import StyledButton from "components/styled/StyledButton";
-import Title from "components/styled/StyledTitle";
+import StyledInput from "components/styled/form/StyledInput";
+import StyledForm from "components/styled/form/StyledForm";
+import StyledButton from "components/styled/form/StyledButton";
+import Title from "components/styled/form/StyledTitle";
 
 const Join = () => {
   const navigate = useNavigate();
@@ -106,7 +106,7 @@ const Join = () => {
 
   return (
     <div>
-      <Title>Join 페이지</Title>
+      <Title>회원가입 페이지</Title>
       <StyledForm onSubmit={handleSubmit(onValid)}>
         <StyledInput
           placeholder="id"
@@ -129,7 +129,7 @@ const Join = () => {
         />
         <span>{errors?.password?.message}</span>
         <StyledInput
-          placeholder="password2"
+          placeholder="password 확인"
           {...register("password2", { required: "비밀번호를 입력해주세요" })}
           type="password"
         />

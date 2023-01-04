@@ -1,7 +1,7 @@
-import StyledButton from "components/styled/StyledButton";
-import StyledForm from "components/styled/StyledForm";
-import StyledInput from "components/styled/StyledInput";
-import StyledTitle from "components/styled/StyledTitle";
+import StyledButton from "components/styled/form/StyledButton";
+import StyledForm from "components/styled/form/StyledForm";
+import StyledInput from "components/styled/form/StyledInput";
+import StyledTitle from "components/styled/form/StyledTitle";
 import { useState } from "react";
 
 const LogIn = () => {
@@ -48,7 +48,7 @@ const LogIn = () => {
 
   return (
     <div>
-      <StyledTitle>LogIn 페이지</StyledTitle>
+      <StyledTitle>로그인 페이지</StyledTitle>
       <StyledForm>
         <StyledInput placeholder="id" value={user.id} onChange={handleId} />
         <StyledInput
@@ -65,7 +65,7 @@ const LogIn = () => {
           onChange={handlePassword2}
           autoComplete={"off"}
         />
-        <StyledButton onClick={handleSubmit}>업로드</StyledButton>
+        <StyledButton onClick={handleSubmit}>로그인</StyledButton>
       </StyledForm>
     </div>
   );

@@ -1,3 +1,6 @@
+import StyledButton from "components/styled/form/StyledButton";
+import StyledForm from "components/styled/form/StyledForm";
+import StyledInput from "components/styled/form/StyledInput";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
@@ -45,16 +48,20 @@ const Update = () => {
   return (
     <div>
       <h1>Update 페이지</h1>
-      <form>
-        <input placeholder="title" value={post.title} onChange={handleTitle} />
-        <input
+      <StyledForm>
+        <StyledInput
+          placeholder="title"
+          value={post.title}
+          onChange={handleTitle}
+        />
+        <StyledInput
           placeholder="content"
           value={post.content}
           onChange={handleContent}
         />
 
-        <button onClick={handleSubmit}>업데이트</button>
-      </form>
+        <StyledButton onClick={handleSubmit}>업데이트</StyledButton>
+      </StyledForm>
     </div>
   );
 };
