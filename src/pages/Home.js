@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { todoListStatsState } from "atom/todoList";
 import { Suspense } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { getPosts } from "../api/api";
 import Post from "../components/Post";
 
