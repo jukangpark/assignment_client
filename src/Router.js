@@ -28,6 +28,8 @@ const Router = () => {
             </>
           ) : (
             <>
+              <Route path={"/upload"} element={<LogIn />} />
+              <Route path={"/posts/:id/update"} element={<LogIn />} />
               <Route path={"/user/join"} element={<Join />} />
               <Route path={"/user/login"} element={<LogIn />} />
             </>

@@ -51,3 +51,14 @@ export const currentUserInfoQuery = selector({
     return { result: false };
   },
 });
+
+// 컴포넌트가 마운트 되기 전에 상태를 불러오면 에러가 발생한다.
+// 보통의 경우 우리는 마운트가 완료된 이후에 데이터를 호출하기 위해
+// useEffect(() => {},[]) 안에 호출 메서드를 넣어준다.
+// 하지만 ** 중요 ) useRecoilValue 는 react hook 이기 때문에 useEffect 안에서 호출할 수 없다.
+
+// 공식 홈페이지에서는 fending 중인 데이터를 다루기 위해 React Suspense 와 함께 동작하도록 디자인 되어 있다고 정의되어있다.
+
+// Router 를 Suspense 로 감싸주는 이유 ->
+// useRecoilValue 를 사용하면 컴포넌트가 마운트 되기 이전에 비동기로 받아온 데이터로 state 를 처리하게 되는데,
+// 이때 warning 이 발생함.
