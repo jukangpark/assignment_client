@@ -20,3 +20,7 @@ export const getPosts = async ({ queryKey }) => {
 
 // 그러나 만약 당신이 fetchAPI 또는 4xx 나 5xx 와 같은 잘못된 상태 코드에 대해 거부된 Promise 를 제공하지 않는다면
 // 다른 라이브러리를 사용하고 있다면, 당신은 직업 queryFn 을 통해 반환해야 합니다.
+
+// 한 컴포넌트에, 여러개의 useQuery 가 있다면,
+// 하나가 끝나고 다음 useQuery 가 실행되는 것이 아니라 두 개가 동시에 실행된다.
+// 따라서 여러개의 비동기 query 가 있다면 useQueries 를 실행하는 것이 좋다.

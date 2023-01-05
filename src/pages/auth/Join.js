@@ -71,6 +71,7 @@ import StyledInput from "components/styled/form/StyledInput";
 import StyledForm from "components/styled/form/StyledForm";
 import StyledButton from "components/styled/form/StyledButton";
 import Title from "components/styled/form/StyledTitle";
+import axios from "axios";
 
 const Join = () => {
   const navigate = useNavigate();
@@ -86,22 +87,32 @@ const Join = () => {
       return alert("비밀번호가 일치하지 않습니다.");
     }
 
+    const user = { id, password };
+
     setValue("id", "");
     setValue("password", "");
     setValue("password2", "");
 
-    fetch(`${process.env.REACT_APP_BASE_URL}/user/join/test`, {
-      method: "POST", // *GET, POST, PUT, DELETE 등
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id, password }), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        alert(data?.message);
+    // fetch(`${process.env.REACT_APP_BASE_URL}/user/join/test`, {
+    //   method: "POST", // *GET, POST, PUT, DELETE 등
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ id, password }), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     alert(data?.message);
+    //     navigate("/user/login");
+    //   });
+
+    axios
+      .post(`${process.env.REACT_APP_BASE_URL}/user/join/test`, user)
+      .then((response) => {
+        alert(response?.data?.message);
         navigate("/user/login");
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -114,8 +125,8 @@ const Join = () => {
             required: "id를 입력해주세요",
             maxLength: 20,
             pattern: {
-              value:
-                /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
+              // value:
+              //   /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
               message: "올바른 이메일을 입력해주세요",
             },
           })}
@@ -126,12 +137,14 @@ const Join = () => {
           placeholder="password"
           {...register("password", { required: "비밀번호를 입력해주세요" })}
           type="password"
+          autoComplete={"off"}
         />
         <span>{errors?.password?.message}</span>
         <StyledInput
           placeholder="password 확인"
           {...register("password2", { required: "비밀번호를 입력해주세요" })}
           type="password"
+          autoComplete={"off"}
         />
         <span>{errors?.password2?.message}</span>
         <StyledButton onClick={handleSubmit(onValid)}>회원가입</StyledButton>

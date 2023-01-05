@@ -1,9 +1,6 @@
 import { faMonero } from "@fortawesome/free-brands-svg-icons";
 import { faMoon, faSun, faUser } from "@fortawesome/free-regular-svg-icons";
-import {
-  faMosquitoNet,
-  faSunPlantWilt,
-} from "@fortawesome/free-solid-svg-icons";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { isDark } from "atom/theme";
 import { Link } from "react-router-dom";
