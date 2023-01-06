@@ -71,10 +71,12 @@ import StyledInput from "components/styled/form/StyledInput";
 import StyledForm from "components/styled/form/StyledForm";
 import StyledButton from "components/styled/form/StyledButton";
 import Title from "components/styled/form/StyledTitle";
-import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import join from "api/user/join";
 
 const Join = () => {
-  const navigate = useNavigate();
+  const { data, isLoading, mutate, mutateAsync } = useMutation(join);
+
   const {
     register,
     handleSubmit,
@@ -93,26 +95,7 @@ const Join = () => {
     setValue("password", "");
     setValue("password2", "");
 
-    // fetch(`${process.env.REACT_APP_BASE_URL}/user/join/test`, {
-    //   method: "POST", // *GET, POST, PUT, DELETE 등
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ id, password }), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     alert(data?.message);
-    //     navigate("/user/login");
-    //   });
-
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}/user/join/test`, user)
-      .then((response) => {
-        alert(response?.data?.message);
-        navigate("/user/login");
-      })
-      .catch((err) => console.log(err));
+    mutate(user);
   };
 
   return (
