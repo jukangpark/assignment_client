@@ -1,5 +1,6 @@
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import StyledTitle from "components/styled/form/StyledTitle";
 import StyledPost from "components/styled/post/StyledPost";
 import { useEffect, useRef, useState } from "react";
@@ -8,23 +9,26 @@ import { Link } from "react-router-dom";
 
 const token = JSON.parse(window.localStorage.getItem("token"));
 
-// 이미지 파일을 인자로 받아서 url 로 뱉는 함수(?)
-const getProfile = (file) => {
-  return new Promise((resolve) => {
-    let baseUrl = "";
+// const getProfile = (file) => {
+//   return new Promise((resolve) => {
+//     let baseUrl = "";
 
-    let reader = new FileReader();
+//     let reader = new FileReader();
 
-    reader.readAsDataURL(file);
+//     reader.readAsDataURL(file);
 
-    reader.onload = () => {
-      baseUrl = reader.result;
-      resolve(baseUrl);
-    };
-  });
-};
+//     reader.onload = () => {
+//       baseUrl = reader.result;
+//       resolve(baseUrl);
+//     };
+//   });
+// };
+
+// javaScript 에서 Blob(Binary Large Object, 블랍) 은 이미지, 사운드, 비디오 같은 멀티미디어 데이터를 다룰 때 사용할 수 있습니다.
+// File 객체도 name 과 lastModifiedDate 속성이 존재하는 Blob 객체입니다.
 
 const Profile = () => {
+  const [image, setImage] = useState("");
   const { id } = useParams();
 
   const [user, setUser] = useState({ isLoading: true });
@@ -50,12 +54,31 @@ const Profile = () => {
 
   const inputRef = useRef(null);
 
-  const profileImageUpload = (e) => {
+  const profileImageUpload = async (e) => {
     e.preventDefault();
+
+    // axios.post(`${process.env.REACT_APP_BASE_URL}/user/${id}/test`, image);
+
+    let formData = new FormData();
+    formData.append("image", image);
+
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/user/${id}/test`,
+        formData
+      );
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+
+    // image 라는 state 에 Blob 객체를 담아서,
+    // api 에 담아서 보내기
+    // 이미지가 바뀔 때마다 바뀐 이미지를 미리보기로 보여주기
   };
 
   const handleImageChange = (e) => {
-    console.log(e.target.files[0]);
+    setImage(e.target.files[0]);
   };
 
   return (
