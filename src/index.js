@@ -2,6 +2,8 @@ import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { RecoilRoot } from "recoil";
+import { Provider } from "react-redux";
+import { store } from "store/store";
 
 // npm i @tanstack/react-query
 // npm i @tanstack/react-query-devtools
@@ -11,7 +13,9 @@ import { RecoilRoot } from "recoil";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <RecoilRoot>
-    <App />
-  </RecoilRoot>
+  <Provider store={store}>
+    <RecoilRoot>
+      <App />
+    </RecoilRoot>
+  </Provider>
 );

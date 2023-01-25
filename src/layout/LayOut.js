@@ -3,9 +3,15 @@ import { useRecoilValue } from "recoil";
 import { currentUserInfoQuery } from "atom/auth";
 import Footer from "components/Footer";
 import Header from "components/Header";
+import { useSelector } from "react-redux";
 
 const LayOut = () => {
   const data = useRecoilValue(currentUserInfoQuery);
+
+  const reduxUserData = useSelector((state) => state.USER);
+
+  console.log("useSelector 로 가져온 유젇 데이터", reduxUserData.result);
+  console.log("useSelector 로 가져온 유젇 데이터", reduxUserData.user.id);
 
   return (
     <div>

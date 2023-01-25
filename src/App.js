@@ -10,6 +10,8 @@ import { isDark } from "atom/theme";
 import { Suspense } from "react";
 import Loading from "pages/Loading";
 import ErrorBoundary from "antd/lib/alert/ErrorBoundary";
+import { useDispatch } from "react-redux";
+import { authUser } from "slice/userSlice";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,6 +23,9 @@ const queryClient = new QueryClient({
 
 const App = () => {
   const isDarkState = useRecoilValue(isDark);
+  const dispatch = useDispatch();
+
+  dispatch(authUser());
 
   return (
     <QueryClientProvider client={queryClient}>
