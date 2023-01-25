@@ -11,7 +11,6 @@ const LayOut = () => {
   const reduxUserData = useSelector((state) => state.USER);
 
   console.log("useSelector 로 가져온 유젇 데이터", reduxUserData.result);
-  console.log("useSelector 로 가져온 유젇 데이터", reduxUserData.user.id);
 
   return (
     <div>
